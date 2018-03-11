@@ -7,11 +7,10 @@
  var letterGuess = '';
  var computerChoice = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
  //creates random
- var random = Math.floor(Math.random() * computerChoice.length);
- var computerGuess = computerChoice[random];
+ var computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
 
  document.getElementById("start").addEventListener("click", function(){
-     var newComp = computerChoice[random];
+     var newComp = computerChoice[Math.floor(Math.random() * computerChoice.length)];
      console.log(newComp);
      wins = 0;
      losses = 0;
@@ -54,12 +53,12 @@
         if ((guessRemain > 0) && (userGuess === newComp)){
             wins++;
             document.getElementById('won').innerHTML = "Win Streak : " + wins;
-            alert("WOW YOU ARE PSYCHIC!!!" + userGuess + "was right!");
+            alert("WOW YOU ARE PSYCHIC!!!  " + userGuess + " was right!! ");
             reset();
         } else if(guessRemain === 0){
             losses++;
             document.getElementById('lost').innerHTML = "Losing Streak " + losses;
-            alert("NOT PSYCHIC. TRY AGAIN!"); 
+            alert("NOT PSYCHIC. " + userGuess + " was wrong, TRY AGAIN!"); 
             reset();
         };
     };
