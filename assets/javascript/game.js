@@ -1,61 +1,65 @@
+ // Create All Needed Variables
  var wins = 0;
  var losses = 0;
  var guesses = 10;
  var guessRemain = 10;
  var guessed = [];
- var letterGuess = null;
+ var letterGuess = '';
  var computerChoice = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
- var computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+ //creates random
+ var random = Math.floor(Math.random() * computerChoice.length);
+ var computerGuess = computerChoice[random];
 
  document.getElementById("start").addEventListener("click", function(){
-     var newGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
-     console.log(newGuess);
+     var newComp = computerChoice[random];
+     console.log(newComp);
+     wins = 0;
+     losses = 0;
 
-     document.getElementById('remain').innerHTML = "Guesses Remaining : " + guessRemain;
-     document.getElementById('won').innerHTML = "Wins : " + wins;
-     document.getElementById('lost').innerHTML = "Losses : " + losses;
-     document.getElementById('arrGuess').innerHTML = "Letters Guessed : " + guessed;
-
-     var newGuessesRemain = function() {
-         document.getElementById('remain').innerHTML = "Guesses Remaining: " + guessRemain;
-      };
-     var updateLetterGuess = function() {
-     this.letterGuess = this.computerChoice[Math.floor(Math.random() * this.computerChoice.length)];
-    };
-
-     var updateGuesses = function() {
-       document.getElementById('arrGuess').innerHTML = "Guessed: " + guessed.join(', ');
-    };
-
-    var reset = function() {
-        guesses = 10;
-        guessRemain = 10;
-        guessed = [];
-        updateLetterGuess();
-        updateGuesses();
-        newGuessesRemain();
-        };
-
-        newGuessesRemain();
-        updateLetterGuess();
+     document.getElementById('remain').innerHTML = "Guesses Left Now : " + guessRemain;
+     document.getElementById('won').innerHTML = "Current Win Streak : " + wins;
+     document.getElementById('lost').innerHTML = "Current Loss Streak : " + losses;
+     document.getElementById('arrayGuess').innerHTML = "Letters You Already Guessed : " + guessed;
         
 
     document.onkeyup = function(event) {
+        //Define user key guess function, subtract from remaining and add to array
         var userGuess = event.key;
         guessRemain--;
         guessed.push(userGuess);
-        updateLetterGuess();
-        updateGuesses();
-        
-        if ((guessRemain > 0) && (userGuess === newGuess)){
+        //set new variables equal to functions you need to run at key press
+        var newGuess = function() {
+            document.getElementById('remain').innerHTML = "Guesses Remaining: " + guessRemain;
+        };
+        var updateLetterGuess = function() {
+            this.letterGuess = this.computerChoice[Math.floor(Math.random() * this.computerChoice.length)];
+        };
+        var updateGuesses = function() {
+            document.getElementById('arrayGuess').innerHTML = "Guessed: " + guessed.join(', ');
+        };
+// run these functions at key press
+           newGuess();
+           updateLetterGuess();
+           updateGuesses();
+//reset variable neede for game end
+        var reset = function() {
+            guesses = 10;
+            guessRemain = 10;
+            guessed = [];
+            updateLetterGuess();
+            updateGuesses();
+            newGuess();
+            };
+//must be fulfilled to get alerts
+        if ((guessRemain > 0) && (userGuess === newComp)){
             wins++;
-            document.querySelector('#won').innerHTML = "Wins: " + wins;
-            alert("PSYCHIC!");
+            document.getElementById('won').innerHTML = "Win Streak : " + wins;
+            alert("WOW YOU ARE PSYCHIC!!!" + userGuess + "was right!");
             reset();
         } else if(guessRemain === 0){
             losses++;
-            document.querySelector('#lost').innerHTML = "Lost: " + losses;
-            alert("NOT Psychic! Try Again!"); 
+            document.getElementById('lost').innerHTML = "Losing Streak " + losses;
+            alert("NOT PSYCHIC. TRY AGAIN!"); 
             reset();
         };
     };
