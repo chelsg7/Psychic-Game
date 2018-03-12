@@ -40,7 +40,7 @@
            newGuess();
            updateLetterGuess();
            updateGuesses();
-//reset variable neede for game end
+//reset variable needs for game end
         var reset = function() {
             guesses = 10;
             guessRemain = 10;
