@@ -1,3 +1,20 @@
-.georgia {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+body, html {
+    height: 100%;
+}
+
+#bg { 
+    /* The image used */
+    background-image: url("../images/psych.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#psy{
+    background: transparent
 }

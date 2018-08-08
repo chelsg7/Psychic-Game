@@ -59,7 +59,7 @@ document.getElementById("start").addEventListener("click", function(){
             } else if(guessRemain === 0){
                 losses++;
                 document.getElementById('lost').innerHTML = "Losing Streak " + losses;
-                alert("NOT PSYCHIC. " + userGuess + " was wrong, " + newComp + "was the correct answer, TRY AGAIN!"); 
+                alert("NOT PSYCHIC. " + userGuess + " was wrong, " + newComp + " was the correct answer, TRY AGAIN!"); 
                 reset();
             };
         };
